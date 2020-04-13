@@ -24,11 +24,11 @@ RUN mkdir -p /usr/local/gcloud \
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
 #Copy jar for gui
-COPY ./Untitled2.jar /usr/local/
+COPY ./runnableJar.jar /usr/local/
 
 #Copy key for google ssh
 COPY ./coastal-fiber-273519-5fc071667ed6.json /usr/local/
-COPY ./dockerScript /usr/local/
+#COPY ./dockerScript /usr/local/
 
 RUN export GOOGLE_APPLICATION_CREDENTIALS="/usr/local/coastal-fiber-273519-5fc071667ed6.json"
 
@@ -44,4 +44,4 @@ RUN gcloud compute ssh  nordby_erik3@pittcloudproj-m   --project=coastal-fiber-2
 
 
 # Start the image with the jar file as the entrypoint
-ENTRYPOINT ["java", "-jar", "/usr/local/Untitled2.jar"]
+ENTRYPOINT ["java", "-jar", "/usr/local/runnableJar.jar"]
