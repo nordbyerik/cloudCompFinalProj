@@ -1,0 +1,6 @@
+#!/bin/bash
+#setfacl -m user:1000:r ${HOME}/.Xauthority
+sudo docker build /home/erik/Documents/School/cloudCompFinalProjGit -t final
+##xhost +SI:localuser:$(id -un)
+sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix/ final
+
