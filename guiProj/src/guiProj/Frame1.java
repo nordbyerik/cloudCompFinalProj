@@ -229,6 +229,7 @@ public class Frame1 {
 		
 		
 		
+		
 
 		JButton btnNewButton_2 = new JButton("All");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -291,6 +292,13 @@ public class Frame1 {
 				            .build();
 					Storage storage = options.getService();
 					
+					Blob blob0 = storage.get("dataproc-staging-us-west1-1074180864086-fedgkxmx", "Out/part-r-00001");
+					System.err.println(blob0.toString());
+					ReadChannel readChannel0 = blob0.reader();
+					FileOutputStream fileOuputStream0 = new FileOutputStream( "out0.txt" );
+					fileOuputStream0.getChannel().transferFrom(readChannel0, 0, Long.MAX_VALUE);
+					fileOuputStream0.close();
+					
 					Blob blob = storage.get("dataproc-staging-us-west1-1074180864086-fedgkxmx", "Out/part-r-00001");
 						System.err.println(blob.toString());
 						ReadChannel readChannel = blob.reader();
@@ -322,6 +330,7 @@ public class Frame1 {
 					
 					//Set up individual file paths
 					List<Path> inputs = Arrays.asList(
+							Paths.get("out0.txt"),
 				            Paths.get("out.txt"),
 				            Paths.get("out2.txt"),
 				            Paths.get("out3.txt"),
